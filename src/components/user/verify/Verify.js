@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom'
-import { parseJwt } from '../../../misc/Helpers';
-import AuthContext from '../../../context/AuthContext';
-import { useContext, useState } from 'react';
-import { createTokenOAuth2 } from '../../../api/AuthApi';
+import { useState } from 'react';
+import { verifyEmail } from '../../../api/AuthApi';
 import { toast } from 'react-hot-toast';
 
-const OAuth2RedirectHandler = () => {
-    const authContext = useContext(AuthContext);
+const Verify = () => {
     const location = useLocation();
     const nav = useNavigate();
     const [isLoading, setLoading] = useState(true);
@@ -21,19 +18,11 @@ const OAuth2RedirectHandler = () => {
         return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
 
-    const token = getUrlParameter('token');
-    const error = getUrlParameter('error');
+    const id = getUrlParameter('id');
 
     useEffect(() => {
-        async function tokenCreator() {
-            const data = parseJwt(token);
-            const username = data.sub;
-            const oAuth2User = { token, username };
-            await createTokenOAuth2(oAuth2User).then(response => {
-                const { token, refreshToken, imgUrl, name } = response.data;
-                const data = parseJwt(token);
-                const user = { data, token, refreshToken, imgUrl, name };
-                authContext.userLogin(user);
+        async function verifyEmailTask() {
+            await verifyEmail(id).then(response => {
                 setHasError(false);
             }).catch(error => {
                 setHasError(true);
@@ -41,23 +30,23 @@ const OAuth2RedirectHandler = () => {
             });
             setLoading(false);
         }
-        if (token) {
-            tokenCreator();
+        if (id) {
+            verifyEmailTask();
         } else {
             setHasError(false);
             setLoading(false);
         }
-    }, [token])
+    }, [id])
 
     useEffect(() => {
         if (!isLoading) {
             if (hasError) {
-                return nav("/login");
+                return nav("/");
             } else {
-                return nav("/profile");
+                return nav("/login");
             }
         }
     }, [isLoading])
 }
 
-export default OAuth2RedirectHandler;
+export default Verify;

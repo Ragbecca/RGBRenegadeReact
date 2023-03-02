@@ -20,7 +20,6 @@ class AuthProvider extends Component {
     }
 
     userIsAuthenticated = (fromEffect) => {
-
         let user = localStorage.getItem('user');
         if (!user) {
             return false;

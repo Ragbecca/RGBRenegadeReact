@@ -1,5 +1,6 @@
-import { API_BASE_URL_AUTH, API_BASE_URL_RESOURCE } from '../constants/IndexConstants';
+import { API_BASE_URL, API_BASE_URL_AUTH } from '../constants/IndexConstants';
 import axios from 'axios';
+import { bearerAuth } from '../misc/Helpers';
 
 export function getCurrentUser(user) {
     if (!localStorage.getItem("test")) {
@@ -31,6 +32,12 @@ export function signup(signUpUser) {
     })
 }
 
+export function verifyEmail(id) {
+    return instanceAuth.get(`/auth/verify?id=${id}`, {
+        headers: { 'Content-type': 'application/json' }
+    })
+}
+
 export function createTokenOAuth2(oAuth2User) {
     return instanceAuth.post('/auth/oauth2/createToken', oAuth2User, {
         headers: { 'Content-type': 'application/json' }
@@ -41,14 +48,13 @@ export function renewToken(refreshTokenGotten) {
     const refreshTokenJson = {
         refreshToken: refreshTokenGotten
     }
-    console.log(refreshTokenJson);
     return instanceAuth.post('/auth/refreshtoken', refreshTokenJson, {
         headers: { 'Content-type': 'application/json' }
     })
 }
 
 export function test(user) {
-    return instanceResouce.get('/api/test', {
+    return instance.get('/api/character/test', {
         headers: {
             'Authorization': bearerAuth(user),
         }
@@ -59,10 +65,7 @@ const instanceAuth = axios.create({
     baseURL: API_BASE_URL_AUTH
 });
 
-export const instanceResouce = axios.create({
-    baseURL: API_BASE_URL_RESOURCE
+export const instance = axios.create({
+    baseURL: API_BASE_URL
 });
 
-function bearerAuth(user) {
-    return `Bearer ${user.token}`;
-}

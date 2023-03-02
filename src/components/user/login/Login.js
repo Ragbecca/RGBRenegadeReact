@@ -106,7 +106,11 @@ const LoginForm = () => {
                 toast("You're successfully logged in!");
                 navigate("/")
             }).catch(error => {
-                toast((error && error.message) || 'Oops! Something went wrong. Please try again!');
+                if (error.response.data.message.toLowerCase() === "bad credentials") {
+                    toast("You are using the wrong username and/or password");
+                    return;
+                }
+                toast((error.response.data.message) || 'Oops! Something went wrong. Please try again!');
             });
     }
 

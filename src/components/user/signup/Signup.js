@@ -6,33 +6,37 @@ import { signup } from '../../../api/AuthApi';
 import googleLogo from '../../../img/google-logo.png';
 import githubLogo from '../../../img/github-logo.png';
 import toast from 'react-hot-toast';
+import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-class Signup extends Component {
-    render() {
-        if (this.props.authenticated) {
-            return <Navigate
-                to={{
-                    pathname: "/",
-                    state: { from: this.props.location }
-                }} />;
-        }
+const Signup = (props) => {
 
-        return (
-            <div className="app-body">
-                <div className="signup-container">
-                    <div className="signup-content">
-                        <h1 className="signup-title">Signup with SpringSocial</h1>
-                        <SocialSignup />
-                        <div className="or-separator">
-                            <span className="or-text">OR</span>
-                        </div>
-                        <SignupForm {...this.props} />
-                        <span className="login-link">Already have an account? <Link to="/login">Login!</Link></span>
+    const location = useLocation();
+
+    if (props.authenticated) {
+        return <Navigate
+            to={{
+                pathname: "/",
+                state: { from: location }
+            }} />;
+    }
+
+    return (
+        <div className="app-body">
+            <div className="signup-container">
+                <div className="signup-content">
+                    <h1 className="signup-title">Signup with SpringSocial</h1>
+                    <SocialSignup />
+                    <div className="or-separator">
+                        <span className="or-text">OR</span>
                     </div>
+                    <SignupForm {...props} />
+                    <span className="login-link">Already have an account? <Link to="/login">Login!</Link></span>
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
 
@@ -51,68 +55,76 @@ class SocialSignup extends Component {
     }
 }
 
-class SignupForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: '',
-            email: '',
-            password: ''
+const SignupForm = (props) => {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    function handleInputChange(event) {
+        const inputName = event.target.name;
+        const inputValue = event.target.value;
+
+        switch (inputName) {
+            case 'name':
+                setName(inputValue);
+                break;
+            case 'email':
+                setEmail(inputValue);
+                break;
+            case 'password':
+                setPassword(inputValue);
+                break;
         }
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const inputName = target.name;
-        const inputValue = target.value;
-
-        this.setState({
-            [inputName]: inputValue
-        });
-    }
-
-    handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault();
 
-        const signUpRequest = Object.assign({}, this.state);
+        const signUpRequest = {
+            'name': name,
+            'email': email,
+            'password': password,
+        }
 
         signup(signUpRequest)
             .then(response => {
-                toast("You're successfully registered. Please login to continue!");
-                this.props.history.push("/login");
+                if (response.status === 400) {
+                    toast((response.data.message) || 'Oops! Something went wrong. Please try again!');
+                    return;
+                }
+                toast("You're successfully registered. Please verify at your email!");
+                navigate("/login")
             }).catch(error => {
+                console.log(error);
                 toast((error && error.message) || 'Oops! Something went wrong. Please try again!');
             });
     }
 
-    render() {
-        return (
-            <div className="app-body">
-                <form onSubmit={this.handleSubmit}>
-                    <div className="form-item">
-                        <input type="text" name="name"
-                            className="form-control" placeholder="Name"
-                            value={this.state.name} onChange={this.handleInputChange} required />
-                    </div>
-                    <div className="form-item">
-                        <input type="email" name="email"
-                            className="form-control" placeholder="Email"
-                            value={this.state.email} onChange={this.handleInputChange} required />
-                    </div>
-                    <div className="form-item">
-                        <input type="password" name="password"
-                            className="form-control" placeholder="Password"
-                            value={this.state.password} onChange={this.handleInputChange} required />
-                    </div>
-                    <div className="form-item">
-                        <button type="submit" className="btn btn-block btn-primary" >Sign Up</button>
-                    </div>
-                </form>
-            </div>
-        );
-    }
+    return (
+        <div className="app-body">
+            <form onSubmit={handleSubmit}>
+                <div className="form-item">
+                    <input type="text" name="name"
+                        className="form-control" placeholder="Name"
+                        value={name} onChange={handleInputChange} required />
+                </div>
+                <div className="form-item">
+                    <input type="email" name="email"
+                        className="form-control" placeholder="Email"
+                        value={email} onChange={handleInputChange} required />
+                </div>
+                <div className="form-item">
+                    <input type="password" name="password"
+                        className="form-control" placeholder="Password"
+                        value={password} onChange={handleInputChange} required />
+                </div>
+                <div className="form-item">
+                    <button type="submit" className="btn btn-block btn-primary" >Sign Up</button>
+                </div>
+            </form>
+        </div>
+    );
 }
 
 export default Signup

@@ -6,7 +6,7 @@ const PrivateRoute = (props) => {
 
     const authContext = useContext(AuthContext);
 
-    return authContext.userIsAuthenticated() ? props.child : <Navigate to="/login" replace />;
+    return authContext.userIsAuthenticated(false) ? props.child : <Navigate to="/login" replace />;
 }
 
 export default PrivateRoute;

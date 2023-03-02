@@ -12,6 +12,7 @@ const Profile = () => {
         if (authContext.getUser() == null) {
             return;
         }
+        test(authContext.getUser()).then(response => console.log(response));
         setLoading(false);
     }, [authContext.user])
 

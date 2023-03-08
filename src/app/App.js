@@ -13,26 +13,32 @@ import './App.css';
 import { AuthProvider } from '../context/AuthContext';
 import Chat from '../components/chat/Chat';
 import Verify from '../components/user/verify/Verify';
+import ImageUploader from '../components/image/ImageUploader';
+import { AxiosInterceptor } from '../api/AuthApi';
 
 function App() {
   return (
     <AuthProvider>
-      <div className="app">
-        <AppHeader />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path='/profile' element={
-            <PrivateRoute child={<Profile />} />} />
-          <Route path='/chat' element={
-            <PrivateRoute child={<Chat />} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
-          <Route path="/user/verify" element={<Verify />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes >
-        <Toaster />
-      </div >
+      <AxiosInterceptor>
+        <div className="app">
+          <AppHeader />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path='/profile' element={
+              <PrivateRoute child={<Profile />} />} />
+            <Route path='/chat' element={
+              <PrivateRoute child={<Chat />} />} />
+            <Route path='/profile/upload/image' element={
+              <PrivateRoute child={<ImageUploader />} />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/oauth2/redirect" element={<OAuth2RedirectHandler />} />
+            <Route path="/user/verify" element={<Verify />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes >
+          <Toaster />
+        </div >
+      </AxiosInterceptor>
     </AuthProvider>
   );
 }

@@ -23,10 +23,10 @@ const Signup = (props) => {
     }
 
     return (
-        <div className="app-body">
-            <div className="signup-container">
+        <div className="app-body-signup-upper">
+            <div className="signup-container-upper">
                 <div className="signup-content">
-                    <h1 className="signup-title">Signup with SpringSocial</h1>
+                    <h1 className="signup-title">Signup with RGBRenegade</h1>
                     <SocialSignup />
                     <div className="or-separator">
                         <span className="or-text">OR</span>
@@ -43,7 +43,7 @@ const Signup = (props) => {
 class SocialSignup extends Component {
     render() {
         return (
-            <div className="app-body">
+            <div className="app-body-signup">
                 <div className="social-signup">
                     <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
                         <img src={googleLogo} alt="Google" /> Sign up with Google</a>
@@ -102,7 +102,7 @@ const SignupForm = (props) => {
     }
 
     return (
-        <div className="app-body">
+        <div className="app-body-signup">
             <form onSubmit={handleSubmit}>
                 <div className="form-item">
                     <input type="text" name="name"
@@ -119,8 +119,8 @@ const SignupForm = (props) => {
                         className="form-control" placeholder="Password"
                         value={password} onChange={handleInputChange} required />
                 </div>
-                <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary" >Sign Up</button>
+                <div className="form-item-btn">
+                    <button type="submit" className="btn btn-big btn-block btn-primary" >Sign Up</button>
                 </div>
             </form>
         </div>

@@ -1,49 +1,91 @@
+.app-body-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-body-signup-upper {
+    height: calc(100vh - 61px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-body-signup-upper .or-text {
+    color: #D4A418;
+    font-weight: 500;
+}
+
 .signup-container {
     text-align: center;
 }
 
-
 .signup-content {
-    background: #fff;
+    background-color: whitesmoke;
+    border-radius: 25px;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
-    border-radius: 2px;
-    width: 500px;
     display: inline-block;
     margin-top: 30px;
     vertical-align: middle;
     position: relative;
     padding: 35px;
+    width: 26vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.social-btn {
-    margin-bottom: 15px;
+.app-body-signup .social-signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.social-signup .social-btn {
+    margin-bottom: 0;
     font-weight: 400;
     font-size: 16px;
+    display: flex;
+    justify-content: space-evenly;
+    width: 10vw;
+    color: #D4A418;
+    transition: 0.5s color;
 }
 
-.social-btn img {
+.social-signup .social-btn:hover {
+    color: #8A6C10;
+}
+
+.app-body-signup .social-btn img {
     height: 32px;
     float: left;
-    margin-top: 10px;
+    margin-top: 0;
 }
 
-.social-btn.google {
-    margin-top: 7px;
+.app-body-signup .social-btn.google {
+    margin-top: 0;
 }
 
-.social-btn.facebook img {
+.app-body-signup .social-btn.github img {
     height: 24px;
     margin-left: 3px;
 }
 
-.social-btn.github img {
-    height: 24px;
-    margin-left: 3px;
-}
-
-.login-link {
-    color: rgba(0, 0, 0, 0.65);
+.app-body-signup-upper .login-link {
+    color: #D4A418;
     font-size: 14px;
+}
+
+.app-body-signup-upper .login-link a {
+    color: #8A6C10;
+    font-size: 14px;
+    transition: 0.5s color;
+}
+
+.app-body-signup-upper .login-link a:hover {
+    color: #D4A418;
 }
 
 .signup-title {
@@ -51,5 +93,19 @@
     font-weight: 500;
     margin-top: 0;
     margin-bottom: 30px;
-    color: rgba(0, 0, 0, 0.65);
+    color: #D4A418;
+}
+
+.app-body-signup .form-item-btn {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.app-body-signup .form-item {
+    padding: 10px;
+}
+
+.app-body-signup .form-item .form-control {
+    padding: 1rem 0.5rem;
 }

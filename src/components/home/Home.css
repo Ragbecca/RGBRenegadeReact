@@ -1,270 +1,119 @@
-.home-container {
-    text-align: center;
-    min-height: calc(100vh - 60px);
-    overflow: auto;
+.app-body {
+    min-height: calc(100vh - 61px);
+    color: whitesmoke;
+    display: grid;
+    grid-template-columns: 8vw auto 8vw;
+}
+
+.app-body-left {
     position: relative;
-    padding-top: 60px;
 }
 
-.home-title {
-    font-size: 25px;
-    font-weight: 400;
-    color: rgba(0, 0, 0, 0.70);
-    margin-top: 50px;
+.app-body-left .link {
+    font-size: 1.5vw;
+    text-decoration: none;
+
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+
+    position: absolute;
+    top: 22.5vh;
+    left: 5.5vw;
+    margin-left: -30px;
+
+    transform: rotate(270deg);
+    transform-origin: 0 0;
+    transition: color 0.5s;
 }
 
-.graf-bg-container {
-    width: 100%;
-    height: 310px;
-    overflow: hidden;
-    perspective: 2000px;
-    opacity: .7
+.app-body-left .link:hover {
+    color: #D4A418;
 }
 
-.graf-layout {
+.app-body-left .line-container {
+    margin: 25vh 5vw 0 5vw;
+    height: 50%;
+}
+
+.app-body-left .line-container .line {
     height: 100%;
-    margin: auto;
+    border-right: 1px solid whitesmoke;
+}
+
+.app-body-right {
     position: relative;
-    perspective: 2000px;
 }
 
-.graf-circle:first-child {
+.app-body-right .app-body-right-text {
+    font-size: 1.5vw;
+    text-decoration: none;
+
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+
+    width: max-content;
+    height: fit-content;
+
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateY(1000deg) rotateX(1000deg) rotate(0deg);
-    width: 50px;
-    height: 50px;
+    bottom: 10vh;
+    left: 5.5vw;
+    margin-left: -30px;
+
+    transform: rotate(270deg);
+    transform-origin: 0 0;
+    transition: color 0.5s;
+}
+
+.app-body-middle .container {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 2vw;
+    display: flex;
+    justify-content: space-around;
+    height: calc(100vh - 61px - 2vw);
+}
+
+.middle-left {
+    width: fit-content;
+}
+
+.middle-left .home-title {
+    font-size: 4em;
+    font-weight: 500;
+    width: 35vw;
+    line-height: 1em;
+    margin: 1em 0 0 0;
+}
+
+.middle-left .home-message {
+    font-size: 1.5em;
+    width: 35vw;
+    margin-bottom: 5vh;
+}
+
+.middle-left .home-button {
+    padding: 0.5em 2em;
+    font-size: 2.5em;
+    background-color: rgb(46, 41, 78);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: color 0.5s;
+}
+
+.middle-left .home-button:hover {
+    background-color: rgba(46, 41, 78, 0.9);
+}
+
+.middle-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.middle-right img {
     border-radius: 50%;
-    border: 5px solid #2098f3;
-    animation: scaleOne 5.5s infinite alternate linear;
-    opacity: 0
-}
-
-@keyframes scaleOne {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateY(180deg) rotateX(90deg) rotate(1000deg);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(2) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(135deg) rotateY(135deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #ffa20a;
-    border-left: none;
-    border-top: none;
-    animation: scaleTwo 5s infinite alternate linear
-}
-
-@keyframes scaleTwo {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateX(135deg) rotateY(135deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(3) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #ec412c;
-    border-bottom: none;
-    border-left: none;
-    animation: scaleThree 4.5s infinite alternate linear
-}
-
-@keyframes scaleThree {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateX(45deg) rotateY(45deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(4) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(45deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #fcbd00;
-    border-top: none;
-    border-right: none;
-    animation: scaleFour 4s infinite alternate linear
-}
-
-@keyframes scaleFour {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateX(45deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(5) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(135deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #2da94f;
-    border-bottom: none;
-    border-left: none;
-    animation: scaleFive 3.5s infinite alternate linear
-}
-
-@keyframes scaleFive {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateX(135deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(6) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(100deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 15px solid #f57700;
-    border-bottom: none;
-    border-right: none;
-    animation: scaleSix 3s infinite alternate linear
-}
-
-@keyframes scaleSix {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateX(100deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(7) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateY(-105deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 10px solid #2098f3;
-    border-bottom: none;
-    border-left: none;
-    animation: scaleSeven 2.5s infinite alternate linear
-}
-
-@keyframes scaleSeven {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateY(-105deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(8) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateY(45deg) rotateX(45deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #30bbb0;
-    border-bottom: none;
-    border-left: none;
-    animation: scaleEight 2s infinite alternate linear
-}
-
-@keyframes scaleEight {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateY(45deg) rotateX(45deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(9) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateY(135deg) rotateX(135deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #ff453c;
-    border-bottom: none;
-    border-right: none;
-    animation: scaleNine 1.5s infinite alternate linear
-}
-
-@keyframes scaleNine {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateY(135deg) rotateX(135deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(10) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateY(113deg) rotateX(115deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #2098f3;
-    border-bottom: none;
-    border-right: none;
-    animation: scaleTen 3s infinite alternate linear
-}
-
-@keyframes scaleTen {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateY(113deg) rotateX(115deg) rotate(1turn);
-        opacity: 0
-    }
-}
-
-.graf-circle:nth-child(11) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotateX(-45deg) rotateY(-45deg) rotate(0deg);
-    width: 310px;
-    height: 310px;
-    border-radius: 50%;
-    border: 5px solid #2098f3;
-    border-bottom: none;
-    border-right: none;
-    animation: scaleEleven 2s infinite alternate linear
-}
-
-@keyframes scaleEleven {
-    to {
-        border-radius: 50%;
-        transform: translate(-50%, -50%) rotateX(-45deg) rotateY(-45deg) rotate(1turn);
-        opacity: 0
-    }
 }

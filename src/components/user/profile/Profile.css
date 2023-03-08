@@ -1,3 +1,14 @@
+.app-body-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 61px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+}
+
 .profile-container {
     padding-top: 30px;
 }

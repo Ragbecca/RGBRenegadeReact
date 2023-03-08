@@ -38,10 +38,10 @@ const Login = (props) => {
     }
 
     return (
-        <div className="app-body">
-            <div className="login-container">
+        <div className="app-body-login-upper">
+            <div className="login-container-upper">
                 <div className="login-content">
-                    <h1 className="login-title">Login to SpringSocial</h1>
+                    <h1 className="login-title">Login to RGBRenegade</h1>
                     <SocialLogin />
                     <div className="or-separator">
                         <span className="or-text">OR</span>
@@ -57,7 +57,7 @@ const Login = (props) => {
 class SocialLogin extends Component {
     render() {
         return (
-            <div className="app-body">
+            <div className="app-body-login">
                 <div className="social-login">
                     <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
                         <img src={googleLogo} alt="Google" /> Log in with Google</a>
@@ -104,7 +104,7 @@ const LoginForm = () => {
                 const user = { data, token, refreshToken, imgUrl, name };
                 authContext.userLogin(user);
                 toast("You're successfully logged in!");
-                navigate("/")
+                navigate("/profile")
             }).catch(error => {
                 if (error.response.data.message.toLowerCase() === "bad credentials") {
                     toast("You are using the wrong username and/or password");
@@ -115,7 +115,7 @@ const LoginForm = () => {
     }
 
     return (
-        <div className="app-body">
+        <div className="app-body-login">
             <form onSubmit={handleSubmit}>
                 <div className="form-item">
                     <input type="email" name="email"
@@ -127,8 +127,8 @@ const LoginForm = () => {
                         className="form-control" placeholder="Password"
                         value={password} onChange={handleInputChange} required />
                 </div>
-                <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary">Login</button>
+                <div className="form-item-btn">
+                    <button type="submit" className="btn btn-big btn-block btn-primary">Login</button>
                 </div>
             </form>
         </div>

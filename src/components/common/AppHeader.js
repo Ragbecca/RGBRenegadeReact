@@ -24,12 +24,35 @@ const AppHeader = () => {
     return (
         <div className="app-top-box">
             <header className="app-header">
-                <div className="container">
+                <div className="app-header-container">
+                    <div className="app-options-left">
+                        <nav className="app-nav-left">
+                            {isLoggedIn ? (
+                                <ul>
+                                    <li>
+                                        <NavLink to="/chat">Chat</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/profile/upload/image">Profile Image</NavLink>
+                                    </li>
+                                </ul>
+                            ) : (
+                                <ul>
+                                    <li>
+                                        <NavLink to="/login">Login</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/signup">Signup</NavLink>
+                                    </li>
+                                </ul>
+                            )}
+                        </nav>
+                    </div>
                     <div className="app-branding">
                         <Link to="/" className="app-title">RGB Renegade</Link>
                     </div>
-                    <div className="app-options">
-                        <nav className="app-nav">
+                    <div className="app-options-right">
+                        <nav className="app-nav-right">
                             {isLoggedIn ? (
                                 <ul>
                                     <li>
@@ -42,10 +65,10 @@ const AppHeader = () => {
                             ) : (
                                 <ul>
                                     <li>
-                                        <NavLink to="/login">Login</NavLink>
+                                        <NavLink to="/signup">Signup</NavLink>
                                     </li>
                                     <li>
-                                        <NavLink to="/signup">Signup</NavLink>
+                                        <NavLink to="/login">Login</NavLink>
                                     </li>
                                 </ul>
                             )}

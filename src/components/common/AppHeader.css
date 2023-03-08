@@ -2,46 +2,64 @@
     height: 60px;
     position: relative;
     z-index: 10;
+    border-bottom: 1px white solid;
+    padding: 0 10vw;
+}
+
+.app-header-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .app-title {
     line-height: 60px;
     vertical-align: middle;
-    font-size: 1.35em;
+    font-size: 3em;
+    color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    transition: color 0.5s;
 }
 
-.app-branding {
-    float: left;
+.app-title:hover {
+    color: #D4A418;
 }
 
-.app-options {
-    float: right;
-}
-
-.app-nav ul {
+.app-title,
+.app-nav-right ul,
+.app-nav-left ul {
     list-style-position: none;
     margin: 0;
     padding: 0;
 }
 
-.app-nav ul li {
+.app-nav-right li,
+.app-nav-left li {
     list-style-type: none;
     display: inline-block;
 }
 
-.app-nav ul li a {
+.app-nav-right ul li a,
+.app-nav-left ul li a {
     display: inline-block;
     line-height: 60px;
     vertical-align: middle;
     padding-left: 15px;
     padding-right: 15px;
-    color: rgba(0, 0, 0, 0.65);
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 1.5em;
+    font-family: 'Roboto Condensed', sans-serif;
+    transition: color 0.5s;
 }
 
-.app-nav ul li a:hover {
-    color: #0f96f6;
+.app-nav-right ul li a:hover,
+.app-nav-left ul li a:hover {
+    color: #D4A418;
 }
 
-.app-nav ul li a.active {
-    color: #0f96f6;
+.app-nav-right ul li a.active,
+.app-nav-left ul li a.active {
+    color: #D4A418;
 }

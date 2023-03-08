@@ -19,6 +19,13 @@ class AuthProvider extends Component {
         return JSON.parse(localStorage.getItem('user'));
     }
 
+    changeAvatarURL = (avatarURL) => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        user.imgUrl = avatarURL;
+        this.setState({ user });
+        localStorage.setItem('user', JSON.stringify(user));
+    }
+
     userIsAuthenticated = (fromEffect) => {
         let user = localStorage.getItem('user');
         if (!user) {
@@ -56,10 +63,10 @@ class AuthProvider extends Component {
     render() {
         const { children } = this.props;
         const { user } = this.state;
-        const { getUser, userIsAuthenticated, userLogin, userLogout } = this;
+        const { getUser, userIsAuthenticated, userLogin, userLogout, changeAvatarURL } = this;
 
         return (
-            <AuthContext.Provider value={{ user, getUser, userIsAuthenticated, userLogin, userLogout }}>
+            <AuthContext.Provider value={{ user, getUser, userIsAuthenticated, userLogin, userLogout, changeAvatarURL }}>
                 {children}
             </AuthContext.Provider>
         )

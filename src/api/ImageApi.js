@@ -1,20 +1,17 @@
 import { instance } from "./AuthApi";
 import { bearerAuth } from "../misc/Helpers";
 
-export function getMessages(user) {
-    return instance.get(`/api/chat/get-all`, {
+export function addImage(user, imageJSON) {
+    return instance.post(`/api/image/upload`, imageJSON, {
         headers: {
+            'Content-Type': 'multipart/form-data',
             'Authorization': bearerAuth(user),
         }
     })
 }
 
-export function sendMessage(user, text) {
-    let msg = {
-        sender: user.data.sub,
-        content: text
-    }
-    return instance.post(`/api/chat/send`, msg, {
+export function getImage(imageId, user) {
+    return instance.get(`/api/image/get?id=${imageId}`, {
         headers: {
             'Authorization': bearerAuth(user),
         }

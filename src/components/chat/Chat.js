@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Input from './Input';
 import Messages from './Messages';
-import { sendMessage } from '../../api/ChatApi';
+import { getMessages, sendMessage } from '../../api/ChatApi';
 import AuthContext from '../../context/AuthContext';
 import { StompSessionProvider } from 'react-stomp-hooks';
 import { toast } from 'react-hot-toast';

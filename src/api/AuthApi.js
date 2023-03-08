@@ -1,6 +1,9 @@
 import { API_BASE_URL, API_BASE_URL_AUTH } from '../constants/IndexConstants';
 import axios from 'axios';
 import { bearerAuth } from '../misc/Helpers';
+import { useAuthContext } from '../context/AuthContext';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export function getCurrentUser(user) {
     if (!localStorage.getItem("test")) {
@@ -68,4 +71,33 @@ const instanceAuth = axios.create({
 export const instance = axios.create({
     baseURL: API_BASE_URL
 });
+
+const AxiosInterceptor = ({ children }) => {
+    const authContext = useAuthContext();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+
+        const interceptor = instance.interceptors.request.use(function (config) {
+            if (!authContext.userIsAuthenticated(true)) {
+                navigate("/login");
+            } else {
+                return config;
+            }
+        }, function (config) {
+            if (!authContext.userIsAuthenticated(true)) {
+                navigate("/login");
+            } else {
+                return config;
+            }
+        });
+
+        return () => instance.interceptors.response.eject(interceptor);
+
+    }, [])
+
+    return children;
+}
+
+export { AxiosInterceptor };
 

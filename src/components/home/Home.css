@@ -101,11 +101,11 @@
     color: white;
     text-transform: uppercase;
     letter-spacing: 3px;
-    transition: color 0.5s;
+    transition: background-color 0.5s;
 }
 
 .middle-left .home-button:hover {
-    background-color: rgba(46, 41, 78, 0.9);
+    background-color: rgb(25, 22, 42);
 }
 
 .middle-right {

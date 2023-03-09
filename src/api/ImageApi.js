@@ -17,3 +17,11 @@ export function getImage(imageId, user) {
         }
     })
 }
+
+export function getImageUser(username, user) {
+    return instance.get(`/api/image/get-user?username=${username}`, {
+        headers: {
+            'Authorization': bearerAuth(user),
+        }
+    })
+}

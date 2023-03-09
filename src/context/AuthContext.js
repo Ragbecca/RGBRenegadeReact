@@ -36,6 +36,11 @@ class AuthProvider extends Component {
         if (Date.now() > user.data.exp * 1000) {
             if (fromEffect) {
                 renewToken(user.refreshToken).then(response => {
+                    if (response.status === 500) {
+                        toast("Renew Token has been expired. Login again!");
+                        this.userLogout();
+                        return false;
+                    }
                     const { token, refreshToken } = response.data;
                     const data = parseJwt(token);
                     const user = { data, token, refreshToken };

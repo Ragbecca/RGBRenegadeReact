@@ -1,0 +1,50 @@
+.app-body-uploader {
+  height: calc(100vh - 61px);
+  color: whitesmoke;
+}
+
+.app-body-uploader-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.uploader-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 5vh;
+}
+
+.uploader-image-src {
+  border-radius: 50%;
+  max-width: 250px;
+}
+
+.uploader-image-height {
+  min-height: 250px;
+}
+
+.uploader {
+  padding: 0.5em 2em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: background-color 0.5s;
+}
+
+.uploader-image-accept {
+  padding: 0.5em 2em;
+  font-size: 1.5em;
+  background-color: rgb(46, 41, 78);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: background-color 0.5s;
+}
+
+.uploader-image-accept:hover {
+  background-color: rgb(25, 22, 42);
+}

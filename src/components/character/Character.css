@@ -1,0 +1,14 @@
+.app-body-character {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 61px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+}
+
+.character-container {
+  padding-top: 30px;
+}

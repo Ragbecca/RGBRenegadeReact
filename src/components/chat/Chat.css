@@ -44,7 +44,6 @@
 }
 
 .messages-message.currentUser {
-  /*justify-content: flex-end;*/
   flex-direction: row-reverse;
   text-align: right;
 }

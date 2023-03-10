@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { getImage } from "../../../api/ImageApi";
 import AuthContext from "../../../context/AuthContext";
 import "./Profile.css";
@@ -66,6 +67,9 @@ const Profile = () => {
               <h2>{authContext.getUser().name}</h2>
               <p className="profile-email">{authContext.getUser().username}</p>
             </div>
+            <NavLink to="/profile/upload/image" className="navlink">
+              Change Profile Image
+            </NavLink>
           </div>
         </div>
       </div>
